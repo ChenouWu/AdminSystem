@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { LayoutDashboard, Users, Settings, LogOut } from "lucide-react";
-import { NavLink } from "react-router-dom"; // 如果你没用 react-router，可以用 <a>
+import { LayoutDashboard, Users} from "lucide-react";
+import { NavLink } from "react-router-dom"; 
 
-export default function Sidebar({ collapsed = false, onLogout }) {
+export default function Sidebar({ collapsed = false,  }) {
   const [isCollapsed, setIsCollapsed] = useState(collapsed);
 
   const links = [
-    { to: "/", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
+    { to: "/mainboard", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
     { to: "/employees", label: "Employees", icon: <Users size={18} /> },
-    { to: "/settings", label: "Settings", icon: <Settings size={18} /> },
+
   ];
 
   return (

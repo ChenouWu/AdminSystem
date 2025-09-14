@@ -52,7 +52,6 @@ export default function GetAllEmployees() {
                 <th className="px-4 py-2 text-left font-medium text-neutral-600">Email</th>
                 <th className="px-4 py-2 text-left font-medium text-neutral-600">Gender</th>
                 <th className="px-4 py-2 text-left font-medium text-neutral-600">Department</th>
-                <th className="px-4 py-2 text-right font-medium text-neutral-600">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-200">
@@ -62,17 +61,6 @@ export default function GetAllEmployees() {
                   <td className="px-4 py-2">{e.email}</td>
                   <td className="px-4 py-2">{e.gender || "-"}</td>
                   <td className="px-4 py-2">{e.department || "-"}</td>
-                  <td className="px-4 py-2 text-right">
-                    <button
-                      onClick={() => {
-                        if (confirm("Delete this employee?")) deleteEmployee(e._id || e.id);
-                      }}
-                      className="inline-flex items-center rounded-lg p-1 hover:bg-neutral-100"
-                      title="Delete"
-                    >
-                      <Trash2 className="h-4 w-4 text-red-600" />
-                    </button>
-                  </td>
                 </tr>
               ))}
 

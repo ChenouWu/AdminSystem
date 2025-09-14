@@ -1,25 +1,28 @@
-// src/components/SearchBar.jsx
 import { Search } from "lucide-react";
 import { useState } from "react";
 import { useEmployees } from "../store/Employees";
 import { toast } from "react-hot-toast";
-
-export default function SearchBar({ placeholder = "Search…", onSearch }) {
+import { useNavigate } from "react-router-dom";
+export default function SearchBar({ placeholder = "Search…", }) {
   const [value, setValue] = useState("");
   const {searchingEmployee}  = useEmployees()
+  const navigate = useNavigate();
+
  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const name = value.trim();
-    if (!name) return; // ✅ 空值不请求
+    if (!name) return;
 
     try {
       const data = await searchingEmployee(name);
       console.log(data)
-      if(data === "Employee not found"){
+    
+      if(data === "Employee not found" || data.sta){
         toast.error(`Employee not found`);
         setValue('')
       }
+      navigate(`/singleEmployee/${data.name}`, { state: data });
     
     } catch (err) {
       console.error("search error:", err);
